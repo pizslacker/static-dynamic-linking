@@ -10,34 +10,9 @@ Instead of compiling everything into one big block immediately, the included Mak
 
 **app_dynamic**: Keeps the math library as a separate file on your hard drive and loads it into memory only when the program actually runs.
 
-How It Works
+#### How It Works
+
 Here is the compilation architecture. The source files are identical, but the compiler and linker toolchains handle the object files (.o) completely differently.
-
-code
-```
-flowchart TD
-    classDef source fill:#2d3436,stroke:#74b9ff,stroke-width:2px,color:#fff;
-    classDef object fill:#2d3436,stroke:#fdcb6e,stroke-width:2px,color:#fff;
-    classDef lib fill:#0984e3,stroke:#74b9ff,stroke-width:2px,color:#fff;
-    classDef exec fill:#00b894,stroke:#55efc4,stroke-width:2px,color:#fff;
-
-    A[math_lib.c]:::source
-    B[main.c]:::source
-
-    subgraph Static Pipeline [Static Linking Pipeline]
-        A -->|gcc -c| C(math_lib_static.o):::object
-        C -->|ar rcs| D{libmath.a}:::lib
-        B -->|gcc| E[app_static]:::exec
-        D -->|Hard-copied into| E
-    end
-
-    subgraph Dynamic Pipeline [Dynamic Linking Pipeline]
-        A -->|gcc -fPIC -c| F(math_lib_dyn.o):::object
-        F -->|gcc -shared| G{libmath.so}:::lib
-        B -->|gcc -L. -lmath| H[app_dynamic]:::exec
-        G -.->|Loaded by OS at runtime| H
-    end
-```
 
 **1. The Static Path (libmath.a)**
 Compilation: We compile the C file into a standard object file (.o).
