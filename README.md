@@ -63,6 +63,7 @@ make
 ```
 
 #### 2. Run the executables
+
 Both will output the exact same result:
 
 ```bash
@@ -71,9 +72,11 @@ Both will output the exact same result:
 ```
 
 **The "Break It" Tests**
+
 To truly see the difference between the two architectures, try these three experiments in your terminal:
 
 **Test 1: The Deletion Test**
+
 Delete the libraries, then try to run the apps.
 
 ```bash
@@ -86,6 +89,7 @@ rm libmath.so libmath.a
 Why? `app_static` carries its dependencies inside itself. `app_dynamic` relied on the external file you just deleted.
 
 **Test 2: The Size Test**
+
 Rebuild the project (make clean && make), then check file sizes:
 
 ```bash
@@ -95,6 +99,7 @@ ls -lh app_static app_dynamic
 Notice: `app_static` is a larger file because the library's machine code is baked directly into the binary footprint.
 
 **Test 3: The Dependency Tree**
+
 Use the ldd command (List Dynamic Dependencies) on Linux to see what the OS loads when you run a program.
 
 ```bash
