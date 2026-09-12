@@ -59,6 +59,7 @@ rm libmath.so libmath.a
 ```
 
 `./app_static`   # Will run perfectly fine.
+
 `./app_dynamic`  # Will crash: "cannot open shared object file"
 
 Why? `app_static` carries its dependencies inside itself. `app_dynamic` relied on the external file you just deleted.
