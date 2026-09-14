@@ -79,8 +79,7 @@ Notice: `app_static` is a larger file because the library's machine code is bake
 Use the ldd command (List Dynamic Dependencies) on Linux to see what the OS loads when you run a program.
 
 ```bash
-ldd app_static
-ldd app_dynamic
+ldd app_static app_dynamic
 ```
 
 Notice: app_dynamic will explicitly list libmath.so => ./libmath.so as a requirement to run. app_static only requires core system libraries like libc.
